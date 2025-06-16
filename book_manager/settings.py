@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-7isot!(h7yu22(65od23#+2za=x(p+@(h8$m073m+xtja8zjus'
+SECRET_KEY = 'django-insecure-7isot!(h7yu22(65od23#+2za=x(p+@(h8$m073m+xtja8zjus'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = [
 #     '127.0.0.1',
@@ -37,10 +37,6 @@ DEBUG = False
 #     'https://3122-2409-4090-b048-2828-200a-723a-5be5-2d61.ngrok-free.app'
 # ]
 
-import os
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
-
-SECRET_KEY = os.environ.get('SECRET_KEY', '&f#4f*x8*yym=qo54(7n9b_-c*0xcl5o6_30#_5ld&5$q9c=@^')
 
 
 
@@ -147,7 +143,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
