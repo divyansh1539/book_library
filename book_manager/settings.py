@@ -23,7 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7isot!(h7yu22(65od23#+2za=x(p+@(h8$m073m+xtja8zjus'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import os
+
+DEBUG = os.getenv("DEBUG", "True") == "True"
+
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
+
+
 
 # ALLOWED_HOSTS = [
 #     '127.0.0.1',
@@ -62,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'book_manager.urls'
@@ -135,15 +142,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-import os
 
+import os
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 
 
