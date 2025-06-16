@@ -40,8 +40,10 @@ DEBUG = False
 import os
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
 
-import os
-SECRET_KEY = os.environ.get('SECRET_KEY', 'wyufa!g0i67+#@v1@yk_ljrep)y39)xbtjm8eu&66f=l@6-43%')
+SECRET_KEY = os.environ.get('SECRET_KEY', '&f#4f*x8*yym=qo54(7n9b_-c*0xcl5o6_30#_5ld&5$q9c=@^')
+
+
+
 
 
 # Application definition
@@ -138,12 +140,10 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
