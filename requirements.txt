@@ -1,4 +1,5 @@
 Django>=4.0
+gunicorn
 pygame==2.6.1
 Pygments==2.19.1
 pyparsing==3.2.3
@@ -16,5 +17,6 @@ scikit-image==0.25.2
 scipy==1.15.2
 seaborn==0.13.2
 Send2Trash==1.8.3
-gunicorn
+whitenoise
+
 
