@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block start %}
+<nav class="navbar navbar-expand-lg shadow-lg professional-gradient p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold">📚 Book Library</a>
+        <div class="ms-auto">
+            <a href="/" class="btn btn-light">Login</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-4">
+    <form class="col-6 mx-auto card p-4 shadow-lg" method="post">
+        {% csrf_token %}
+        <div class="col-4.5 mx-auto container-fluid" style="color:blueviolet">
+            <h2 class="text-center"
+                style="background-color: hwb(343 19% 49%); color: whitesmoke; padding: 10px; border-radius: 10px;">
+                Register
+            </h2>
+
+
+        </div>
+        <hr>
+        {% if messages %}
+
+        <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+
+        {% endif %}
+        <div class="form-group mb-3">
+            <label for="exampleInputEmail1">First Name</label>
+            <input name="first_name" type="text" class="form-control" id="exampleInputEmail1" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="exampleInputEmail1">Last Name</label>
+            <input name="last_name" type="text" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group mb-3">
+            <label for="exampleInputEmail1">Username</label>
+            <input name="username" type="text" class="form-control" id="exampleInputEmail1" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="exampleInputPassword1">password</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+        </div>
+        <p>Don't have account?<a href="/">Login</a></p>
+
+        <button type="submit" class="btn btn-success">Register</button>
+
+    </form>
+</div>
+{% endblock %}

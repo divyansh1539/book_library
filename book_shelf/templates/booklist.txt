@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+{% block start %}
+
+<body>
+    <nav class="navbar navbar-expand-lg shadow-lg professional-gradient p-3">
+        <div class="container-fluid">
+            <!-- Left: Logo -->
+            <a class="navbar-brand text-white fw-bold">📚 Book Library</a>
+
+            <!-- Right Side -->
+            <div class="d-flex flex-column align-items-end ms-auto">
+                {% if request.user.is_authenticated %}
+                <!-- Username -->
+                <span class="text-white fw-semibold mb-2">Welcome, {{ request.user.username }}</span>
+
+                <div class="d-flex flex-wrap align-items-center">
+                    <!-- Show search bar only on book list page -->
+                    {% if request.path == '/book-list/' %}
+                    <!-- <form class="d-flex me-2" method="get" action="/book-list/">
+                        <input class="form-control me-2" type="search" name="q" placeholder="Search title..."
+                            style="width: 200px;" />
+                        <button class="btn btn-light" type="submit">🔍</button>
+                    </form> -->
+                    <form method="GET" class="d-flex me-2" role="search">
+                        <input class="form-control me-2" type="search" name="q"
+                            placeholder="Search by Title, Author or Username" value="{{ request.GET.q }}" style ="width:200px;" />
+                        <button class="btn btn-light" type="submit">🔍 Search</button>
+                          
+                    </form>
+                    {% endif %}
+
+                    <!-- Show these only when logged in -->
+                    <a href="/book-list/" class="btn btn-outline-light me-2 mb-1">📖 Book List</a>
+                    <a href="/books" class="btn btn-outline-light me-2 mb-1">➕ Add Book</a>
+                    <a href="/logout" class="btn btn-light mb-1">Logout</a>
+                </div>
+                {% else %}
+                <div class="d-flex">
+                    {% if request.path == '/' %}
+                    <a href="/register" class="btn btn-light">Register</a>
+                    {% else %}
+                    <a href="/" class="btn btn-light">Login</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+
+    <div class='container-fluid my-3 p-3'>
+        <div class="col-4.5 mx-auto container-fluid" style="color:blueviolet">
+            <h2 class="text-center"
+                style="background-color: hwb(343 19% 49%); color: whitesmoke; padding: 10px; border-radius: 10px;"> Book
+                Library</h2>
+
+
+        </div>
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.description}}</td>
+                    <td>
+                        <a href="/update-books/{{book.id}}" class="btn btn-outline-success mb-3">✏ Update</a>
+                        <a href="/delete-book/{{book.id}}" class="btn btn-outline-danger mb-3">🗑 Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}
